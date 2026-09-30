@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+//import Navigation from '../components/Navigation.astro'
+
+const pageTitle = "Acerce de mi";
+
+const identity = {
+  firstName: "Andres",
+  country: "Mexico",
+  occupation: "estudiante",
+  hobbies: ["videojuegos", "deportes"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = true;
+const goal = 3;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <h2>Este es mi nuevo blog cabrones</h2>
+        <h2>y mi nuevo sitio de Astro</h2>
+
+        <p>Estoy trabajando por medio del tutorial de Astro. Esta es la segunda página de mi sitio y la única que no es copiada del pinche tutorial (y Claude).</p>
+        <p>Este sitio se actualizará conforme haga el tutorial, así es que SIGAN VIENDO.</p>
+        <p>Algunas cosas sobre mi: </p>
+        <ul>
+            <li>Me llamo {identity.firstName}.</li>
+            <li>Vivo en {identity.country} y soy un {identity.occupation} de CETI plantel Colomos.</li>
+            {identity.hobbies.length >= 2 &&
+                <li>Dos de mis pasatiempos son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
+            }
+        </ul>
+        <p>Mis habilidades son:</p>
+        <ul>
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+
+        {happy && <p>Estoy feliz de haber hecho este tutorial.</p>}
+        {finished && <p>Termine este tutorial.</p>}
+        {goal === 3 ? <p>Mi meta es terminar en 3 dias</p> : <p>Mi meta no es terminar en 3 dias.</p>}
+</BaseLayout>

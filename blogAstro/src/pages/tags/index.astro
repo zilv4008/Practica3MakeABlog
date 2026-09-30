@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+const pageTitle = "Indice de etiquetas";
+---
+<style>
+  a {
+    color: #00539F;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    margin: 0.1em;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5em;
+    padding: .5em 1em;
+    font-size: 1.15em;
+    background-color: #2d3638a5;
+  }
+
+  .tagged {
+    color: aquamarine;
+    text-decoration: none;
+  }
+</style>
+
+<BaseLayout pageTitle={pageTitle}>
+    <div class="tags">
+        {tags.map((tag) => (
+            <p class="tag"><a class="tagged" href={`/tags/${tag}`}>{tag}</a></p>
+        ))}
+    </div>
+</BaseLayout>
